@@ -1,19 +1,11 @@
 # minecraft-client-csharp
 
-This is an RCON shell for Minecraft servers, written in C# 9.0.
+A client for the Minecraft RCON API., written in C# 9.0.
 
-## Starting the test server
+## Current Usage
 
-```bash
-$ docker pull itzg/minecraft-server
-$ docker run --name=minecraft-server -p 25575:25575 -d -e EULA=TRUE itzg/minecraft-server
-```
-
-## Configuration
-
-The values for `Host`, `Port`, and `Password` are currently constants in [`Program.cs`](MinecraftClient/Program.cs). The default values will work when using the above Docker image.
-
-## Usage
+The values for `Host`, `Port`, and `Password` are constants in [`Shell.cs`](src/MinecraftClient/Shell.cs). 
+The default values will work when using the above Docker image.
 
 ```bash
 $ dotnet run
@@ -23,3 +15,34 @@ getting world seed
 Seed: [1871644822592853811]
 disconnecting
 ```
+
+## Library Usage
+
+TBD
+
+## Shell Utility
+
+TBD
+
+## Limitations
+
+Response bodies over 4KB will be truncated.
+
+## Starting a server for testing
+
+```
+docker pull itzg/minecraft-server
+docker run --name=minecraft-server -p 25575:25575 -d -e EULA=TRUE itzg/minecraft-server
+```
+
+## Running Tests
+
+After starting the test server in Docker:
+
+```
+dotnet test
+```
+
+## Reference
+
+- https://wiki.vg/Rcon
