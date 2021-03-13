@@ -29,11 +29,7 @@ namespace MinecraftClient
 
 	public class Encoder
 	{
-		private const string Host = "127.0.0.1";
-		private const int Port = 25575;
-		private const string Password = "minecraft";
-		private const int HeaderLength = 10; // Does not include 4-byte message length.
-		private const int MaxMessageSize = 4110; // 4096 + 14 bytes of header data.
+		public const int HeaderLength = 10; // Does not include 4-byte message length.
 
 		public static byte[] EncodeMessage(Message msg)
 		{
@@ -57,7 +53,7 @@ namespace MinecraftClient
 			int bodyLen = bytes.Length - (HeaderLength + 4);
 			if (bodyLen > 0)
 			{
-				byte[] bodyBytes = new byte[MaxMessageSize];
+				byte[] bodyBytes = new byte[bodyLen];
 				Array.Copy(bytes, 12, bodyBytes, 0, bodyLen);
 				Array.Resize(ref bodyBytes, bodyLen);
 				return new Message(len, id, (MessageType)type, bodyBytes);
