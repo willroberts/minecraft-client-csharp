@@ -2,23 +2,14 @@
 
 A client for the Minecraft RCON API., written in C# 9.0.
 
-## Current Usage
-
-The values for `Host`, `Port`, and `Password` are constants in [`Shell.cs`](src/MinecraftClient/Shell.cs). 
-The default values will work when using the above Docker image.
-
-```bash
-$ dotnet run
-establishing connection
-authenticating
-getting world seed
-Seed: [1871644822592853811]
-disconnecting
-```
-
 ## Library Usage
 
-TBD
+```csharp
+MinecraftClient client = new MinecraftClient("127.0.0.1", 25575);
+client.Authenticate("password");
+Message seedResp = client.SendCommand("seed");
+Console.WriteLine(Encoding.ASCII.GetString(seedResp.Body)); // Seed: [1871644822592853811]
+```
 
 ## Shell Utility
 
