@@ -1,13 +1,43 @@
 ﻿using System;
 using System.Net.Sockets;
+using System.Text;
 
 namespace MinecraftClient
 {
-	class Client
+	class MinecraftClient
 	{
 		private const int MaxMessageSize = 4110; // 4096 + 14 bytes of header data.
 
-		public static Message SendMessage(NetworkStream conn, Message msg)
+		private TcpClient client;
+		private NetworkStream conn;
+
+		public MinecraftClient(string host, int port)
+		{
+			client = new TcpClient(host, port);
+			conn = client.GetStream();
+		}
+
+		public Message Authenticate(string password)
+		{
+			return sendMessage(new Message(
+				password.Length + Encoder.HeaderLength,
+				1, // fix this with id generator
+				MessageType.Authenticate,
+				Encoding.ASCII.GetBytes(password)
+			));
+		}
+
+		public Message SendCommand(string command)
+		{
+			return sendMessage(new Message(
+				command.Length + Encoder.HeaderLength,
+				2, // fix this with id generator
+				MessageType.Command,
+				Encoding.ASCII.GetBytes(command)
+			));
+		}
+
+		private Message sendMessage(Message msg)
 		{
 			// Send the message.
 			byte[] encoded = Encoder.EncodeMessage(msg);
