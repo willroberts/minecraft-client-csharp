@@ -27,7 +27,7 @@ namespace MinecraftClient
 		}
 	}
 
-	class Encoder
+	public class Encoder
 	{
 		private const string Host = "127.0.0.1";
 		private const int Port = 25575;
