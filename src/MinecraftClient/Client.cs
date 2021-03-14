@@ -4,6 +4,11 @@ using System.Text;
 
 namespace MinecraftClient
 {
+	class RequestIDMismatchException : Exception
+	{
+		public RequestIDMismatchException() { }
+	}
+
 	class MinecraftClient
 	{
 		private const int MaxMessageSize = 4110; // 4096 + 14 bytes of header data.
@@ -37,10 +42,10 @@ namespace MinecraftClient
 			));
 		}
 
-		private Message sendMessage(Message msg)
+		private Message sendMessage(Message req)
 		{
 			// Send the message.
-			byte[] encoded = Encoder.EncodeMessage(msg);
+			byte[] encoded = Encoder.EncodeMessage(req);
 			conn.Write(encoded, 0, encoded.Length);
 
 			// Receive the response.
@@ -48,8 +53,12 @@ namespace MinecraftClient
 			int bytesRead = conn.Read(respBytes, 0, respBytes.Length);
 			Array.Resize(ref respBytes, bytesRead);
 
-			// Decode and return the response.
-			return Encoder.DecodeMessage(respBytes);
+			// Decode the response and check for errors before returning.
+			Message resp = Encoder.DecodeMessage(respBytes);
+			if (req.ID != resp.ID) {
+				throw new RequestIDMismatchException();
+			}
+			return resp;
 		}
 	}
 }

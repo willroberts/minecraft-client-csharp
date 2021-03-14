@@ -14,9 +14,15 @@ namespace MinecraftClient
 			MinecraftClient client = new MinecraftClient(DefaultHost, DefaultPort);
 
 			// Authenticate.
-			Message authResp = client.Authenticate(DefaultPassword);
-			if (authResp.ID != 1)
+			try
+			{
+				Message authResp = client.Authenticate(DefaultPassword);
+			}
+			catch (RequestIDMismatchException)
+			{
 				Console.WriteLine("authentication failure");
+				return;
+			}
 
 			// Start RCON shell.
 			Console.WriteLine("Starting RCON shell. Use 'exit', 'quit', or Ctrl-C to exit.");
