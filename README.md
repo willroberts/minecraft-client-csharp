@@ -7,12 +7,14 @@ A client for the Minecraft RCON API., written in C# 9.0.
 ```csharp
 MinecraftClient client = new MinecraftClient("127.0.0.1", 25575);
 
-client.Authenticate("password"); // All commands can raise exceptions. Use try/catch for error handling.
+// All commands can raise exceptions. Use try/catch for error handling.
+client.Authenticate("password");
 
 Message resp = client.SendCommand("seed");
 Console.WriteLine(resp.Body); // Seed: [1871644822592853811]
 
-client.Close(); // Cleanly disconnect when finished.
+// Cleanly disconnect when finished.
+client.Close();
 ```
 
 ## Shell Utility
