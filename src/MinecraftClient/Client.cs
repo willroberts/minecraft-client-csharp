@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Net.Sockets;
-using System.Text;
+using System.Threading;
 
 namespace MinecraftClient
 {
@@ -15,6 +15,7 @@ namespace MinecraftClient
 
 		private TcpClient client;
 		private NetworkStream conn;
+		private int lastID = 0;
 
 		public MinecraftClient(string host, int port)
 		{
@@ -26,7 +27,7 @@ namespace MinecraftClient
 		{
 			return sendMessage(new Message(
 				password.Length + Encoder.HeaderLength,
-				1, // fix this with id generator
+				Interlocked.Increment(ref lastID),
 				MessageType.Authenticate,
 				password
 			));
@@ -36,7 +37,7 @@ namespace MinecraftClient
 		{
 			return sendMessage(new Message(
 				command.Length + Encoder.HeaderLength,
-				2, // fix this with id generator
+				Interlocked.Increment(ref lastID),
 				MessageType.Command,
 				command
 			));
