@@ -10,13 +10,34 @@ namespace MinecraftClient
 
 		static void Main(string[] args)
 		{
-			// Connect.
-			MinecraftClient client = new MinecraftClient(DefaultHost, DefaultPort);
+			string host = DefaultHost;
+			int port = DefaultPort;
+			string password = DefaultPassword;
 
-			// Authenticate.
+			// Parse arguments.
+			for (int i = 0; i < args.Length; i++)
+			{
+				switch (args[i])
+				{
+					case "--host":
+						host = args[i+1];
+						break;
+					case "--port":
+						port = int.Parse(args[i+1]);
+						break;
+					case "--password":
+						password = args[i+1];
+						break;
+					default:
+						break;
+				}
+			}
+
+			// Connect and authenticate.
+			MinecraftClient client = new MinecraftClient(host, port);
 			try
 			{
-				Message authResp = client.Authenticate(DefaultPassword);
+				Message authResp = client.Authenticate(password);
 			}
 			catch (RequestIDMismatchException)
 			{
