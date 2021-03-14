@@ -4,10 +4,7 @@ using System.Threading;
 
 namespace MinecraftClient
 {
-	class RequestIDMismatchException : Exception
-	{
-		public RequestIDMismatchException() { }
-	}
+	class RequestIDMismatchException : Exception { public RequestIDMismatchException() { } }
 
 	class MinecraftClient
 	{
@@ -56,7 +53,8 @@ namespace MinecraftClient
 
 			// Decode the response and check for errors before returning.
 			Message resp = Encoder.DecodeMessage(respBytes);
-			if (req.ID != resp.ID) {
+			if (req.ID != resp.ID)
+			{
 				throw new RequestIDMismatchException();
 			}
 			return resp;

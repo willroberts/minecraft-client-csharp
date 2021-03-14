@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace MinecraftClient
 {
@@ -20,13 +21,13 @@ namespace MinecraftClient
 				switch (args[i])
 				{
 					case "--host":
-						host = args[i+1];
+						host = args[i + 1];
 						break;
 					case "--port":
-						port = int.Parse(args[i+1]);
+						port = int.Parse(args[i + 1]);
 						break;
 					case "--password":
-						password = args[i+1];
+						password = args[i + 1];
 						break;
 					default:
 						break;
@@ -35,10 +36,7 @@ namespace MinecraftClient
 
 			// Connect and authenticate.
 			MinecraftClient client = new MinecraftClient(host, port);
-			try
-			{
-				Message authResp = client.Authenticate(password);
-			}
+			try { Message authResp = client.Authenticate(password); }
 			catch (RequestIDMismatchException)
 			{
 				Console.WriteLine("authentication failure");
@@ -46,11 +44,24 @@ namespace MinecraftClient
 			}
 
 			// Start RCON shell.
+			List<String> quitCommands = new List<String> { "exit", "quit" };
 			Console.WriteLine("Starting RCON shell. Use 'exit', 'quit', or Ctrl-C to exit.");
-
-			// Get world seed.
-			Message seedResp = client.SendCommand("seed");
-			Console.WriteLine(seedResp.Body);
+			while (true)
+			{
+				Console.Write("> ");
+				String command = Console.ReadLine();
+				if (quitCommands.Contains(command)) { break; }
+				try
+				{
+					Message resp = client.SendCommand(command);
+					Console.WriteLine(resp.Body);
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine($"Error sending command: {e.ToString()}");
+					break;
+				}
+			}
 		}
 	}
 }

@@ -59,10 +59,7 @@ namespace MinecraftClient
 				Array.Resize(ref bodyBytes, bodyLen);
 				return new Message(len, id, (MessageType)type, Encoding.ASCII.GetString(bodyBytes));
 			}
-			else
-			{
-				return new Message(len, id, (MessageType)type, "");
-			}
+			else { return new Message(len, id, (MessageType)type, ""); }
 		}
 	}
 }
