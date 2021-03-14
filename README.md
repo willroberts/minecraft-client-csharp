@@ -22,6 +22,7 @@ client.Close();
 If you are looking for a tool rather than a library, try the shell command in [`Shell.cs`](src/MinecraftClient/Shell.cs):
 
 ```
+$ cd src/MinecraftClient
 $ dotnet run --host 127.0.0.1 --port 25575 --password minecraft
 Starting RCON shell. Use 'exit', 'quit', or Ctrl-C to exit.
 > list
@@ -46,6 +47,7 @@ $ docker run --name=minecraft-server -p 25575:25575 -d -e EULA=TRUE itzg/minecra
 After starting the test server in Docker:
 
 ```
+$ cd src/MinecraftClient.Test
 $ dotnet test
 ```
 
