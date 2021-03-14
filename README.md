@@ -13,7 +13,7 @@ Console.WriteLine(resp.Body); // Seed: [1871644822592853811]
 
 ## Shell Utility
 
-If you are looking for a tool rather than a library, try the shell command in `Shell.cs`:
+If you are looking for a tool rather than a library, try the shell command in [`Shell.cs`](src/MinecraftClient/Shell.cs):
 
 ```
 $ dotnet run --host 127.0.0.1 --port 25575 --password minecraft
