@@ -14,7 +14,7 @@ namespace MinecraftClient.Tests.Encoder
 				14, // Message length.
 				1, // Message ID.
 				(MinecraftClient.MessageType)2, // Message type.
-				Encoding.ASCII.GetBytes("seed") // Message body.
+				"seed" // Message body.
 			);
 			byte[] bytes = MinecraftClient.Encoder.EncodeMessage(msg);
 			byte[] expected = new byte[] {
@@ -42,7 +42,7 @@ namespace MinecraftClient.Tests.Encoder
 				38, // Message length.
 				2, // Message ID.
 				0, // Message type.
-				Encoding.ASCII.GetBytes("Seed: [-2474125574890692308]") // Message body.
+				"Seed: [-2474125574890692308]" // Message body.
 			);
 			Assert.AreEqual(msg.Length, expected.Length);
 			Assert.AreEqual(msg.ID, expected.ID);

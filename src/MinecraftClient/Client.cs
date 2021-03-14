@@ -23,7 +23,7 @@ namespace MinecraftClient
 				password.Length + Encoder.HeaderLength,
 				1, // fix this with id generator
 				MessageType.Authenticate,
-				Encoding.ASCII.GetBytes(password)
+				password
 			));
 		}
 
@@ -33,7 +33,7 @@ namespace MinecraftClient
 				command.Length + Encoder.HeaderLength,
 				2, // fix this with id generator
 				MessageType.Command,
-				Encoding.ASCII.GetBytes(command)
+				command
 			));
 		}
 

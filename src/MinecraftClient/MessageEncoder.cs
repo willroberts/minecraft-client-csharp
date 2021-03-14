@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace MinecraftClient
 {
@@ -16,9 +17,9 @@ namespace MinecraftClient
 		public readonly int Length;
 		public readonly int ID;
 		public readonly MessageType Type;
-		public readonly byte[] Body;
+		public readonly String Body;
 
-		public Message(int length, int id, MessageType type, byte[] body)
+		public Message(int length, int id, MessageType type, String body)
 		{
 			Length = length;
 			ID = id;
@@ -38,7 +39,7 @@ namespace MinecraftClient
 			bytes.AddRange(BitConverter.GetBytes(msg.Length));
 			bytes.AddRange(BitConverter.GetBytes(msg.ID));
 			bytes.AddRange(BitConverter.GetBytes((int)msg.Type));
-			bytes.AddRange(msg.Body);
+			bytes.AddRange(Encoding.ASCII.GetBytes(msg.Body));
 			bytes.AddRange(new byte[] { 0, 0 });
 
 			return bytes.ToArray();
@@ -56,11 +57,11 @@ namespace MinecraftClient
 				byte[] bodyBytes = new byte[bodyLen];
 				Array.Copy(bytes, 12, bodyBytes, 0, bodyLen);
 				Array.Resize(ref bodyBytes, bodyLen);
-				return new Message(len, id, (MessageType)type, bodyBytes);
+				return new Message(len, id, (MessageType)type, Encoding.ASCII.GetString(bodyBytes));
 			}
 			else
 			{
-				return new Message(len, id, (MessageType)type, new byte[]{});
+				return new Message(len, id, (MessageType)type, "");
 			}
 		}
 	}

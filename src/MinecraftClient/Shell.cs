@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Net.Sockets;
-using System.Text;
 
 namespace MinecraftClient
 {
@@ -25,7 +23,7 @@ namespace MinecraftClient
 
 			// Get world seed.
 			Message seedResp = client.SendCommand("seed");
-			Console.WriteLine(Encoding.ASCII.GetString(seedResp.Body));
+			Console.WriteLine(seedResp.Body);
 		}
 	}
 }
