@@ -40,6 +40,7 @@ namespace MinecraftClient
 			catch (RequestIDMismatchException)
 			{
 				Console.WriteLine("authentication failure");
+				client.Close();
 				return;
 			}
 
@@ -62,6 +63,7 @@ namespace MinecraftClient
 					break;
 				}
 			}
+			client.Close();
 		}
 	}
 }

@@ -20,6 +20,12 @@ namespace MinecraftClient
 			conn = client.GetStream();
 		}
 
+		public void Close()
+		{
+			conn.Close();
+			client.Close();
+		}
+
 		public Message Authenticate(string password)
 		{
 			return sendMessage(new Message(
