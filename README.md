@@ -17,7 +17,7 @@ try
 }
 catch (Exception)
 {
-	/* handle error */
+	/* handle errors */
 }
 
 // Cleanly disconnect when finished.
