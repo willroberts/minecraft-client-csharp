@@ -26,7 +26,7 @@ client.Close();
 
 ## Shell Utility
 
-If you are looking for a tool rather than a library, try the shell command in [`Shell.cs`](src/MinecraftClient/Shell.cs):
+If you are looking for a tool rather than a library, try the shell command:
 
 ```bash
 $ cd src/MinecraftClient
