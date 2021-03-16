@@ -1,17 +1,24 @@
 # minecraft-client-csharp
 
-A client for the Minecraft RCON API., written in C# 9.0.
+A client for the Minecraft RCON protocol, written in C# 9.0.
 
 ## Library Usage
 
 ```csharp
+// Create a new client and connect to the server.
 MinecraftClient client = new MinecraftClient("127.0.0.1", 25575);
 
-// All commands can raise exceptions. Use try/catch for error handling.
-client.Authenticate("password");
-
-Message resp = client.SendCommand("seed");
-Console.WriteLine(resp.Body); // Seed: [1871644822592853811]
+// Send some commands.
+try
+{
+	client.Authenticate("password");
+	Message resp = client.SendCommand("seed");
+	Console.WriteLine(resp.Body); // Seed: [1871644822592853811]
+}
+catch (Exception)
+{
+	/* handle error */
+}
 
 // Cleanly disconnect when finished.
 client.Close();
@@ -21,7 +28,7 @@ client.Close();
 
 If you are looking for a tool rather than a library, try the shell command in [`Shell.cs`](src/MinecraftClient/Shell.cs):
 
-```
+```bash
 $ cd src/MinecraftClient
 $ dotnet run --host 127.0.0.1 --port 25575 --password minecraft
 Starting RCON shell. Use 'exit', 'quit', or Ctrl-C to exit.
