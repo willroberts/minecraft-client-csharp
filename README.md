@@ -9,16 +9,14 @@ A client for the Minecraft RCON protocol, written in C# 9.0.
 MinecraftClient client = new MinecraftClient("127.0.0.1", 25575);
 
 // Send some commands.
+try { client.Authenticate("password"); }
+catch (Exception) { /* handle authentication error */ }
 try
 {
-	client.Authenticate("password");
 	Message resp = client.SendCommand("seed");
-	Console.WriteLine(resp.Body); // Seed: [1871644822592853811]
+	Console.WriteLine(resp.Body); // "Seed: [1871644822592853811]"
 }
-catch (Exception)
-{
-	/* handle errors */
-}
+catch (Exception) { /* handle error */ }
 
 // Cleanly disconnect when finished.
 client.Close();
