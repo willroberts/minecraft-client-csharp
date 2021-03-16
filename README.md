@@ -20,7 +20,7 @@ try
 	Message resp = client.SendCommand("seed");
 	Console.WriteLine(resp.Body); // "Seed: [1871644822592853811]"
 }
-catch (Exception) {	/* handle error */ }
+catch (Exception) { /* handle error */ }
 
 // Cleanly disconnect when finished.
 client.Close();
