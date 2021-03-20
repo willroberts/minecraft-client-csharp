@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.6.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{94F05BDC-FAE1-4F6B-9A6D-4AB3C21EFB62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftClient", "src\MinecraftClient\MinecraftClient.csproj", "{E939F21C-CCFC-4009-BFC3-24C44CF02743}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinecraftClient.Tests", "src\MinecraftClient.Tests\MinecraftClient.Tests.csproj", "{B002DE50-F8AC-4218-B02D-1678374CA894}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Debug|x64.Build.0 = Debug|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Debug|x86.Build.0 = Debug|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Release|x64.ActiveCfg = Release|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Release|x64.Build.0 = Release|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Release|x86.ActiveCfg = Release|Any CPU
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743}.Release|x86.Build.0 = Release|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Debug|x64.Build.0 = Debug|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Debug|x86.Build.0 = Debug|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Release|x64.ActiveCfg = Release|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Release|x64.Build.0 = Release|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Release|x86.ActiveCfg = Release|Any CPU
+		{B002DE50-F8AC-4218-B02D-1678374CA894}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E939F21C-CCFC-4009-BFC3-24C44CF02743} = {94F05BDC-FAE1-4F6B-9A6D-4AB3C21EFB62}
+		{B002DE50-F8AC-4218-B02D-1678374CA894} = {94F05BDC-FAE1-4F6B-9A6D-4AB3C21EFB62}
+	EndGlobalSection
+EndGlobal
