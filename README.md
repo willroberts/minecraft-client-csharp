@@ -10,7 +10,7 @@ MinecraftClient client = new MinecraftClient("127.0.0.1", 25575);
 
 // Send some commands.
 // Commands use the Try-Parse pattern for error handling instead of throwing Exceptions.
-// Pass an Message by reference to get a bool return value indicating success or failure.
+// Pass a Message by reference to get a bool return value indicating success or failure.
 // The Sockets library can still raise Exceptions you'd want to catch (e.g. connection failures).
 if (!client.Authenticate("password")) { /* handle authentication error */ };
 Message resp;
