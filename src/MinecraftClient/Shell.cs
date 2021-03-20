@@ -36,8 +36,7 @@ namespace MinecraftClient
 
 			// Connect and authenticate.
 			MinecraftClient client = new MinecraftClient(host, port);
-			try { Message authResp = client.Authenticate(password); }
-			catch (RequestIDMismatchException)
+			if (!client.Authenticate(password))
 			{
 				Console.WriteLine("authentication failure");
 				client.Close();
@@ -52,14 +51,15 @@ namespace MinecraftClient
 				Console.Write("> ");
 				String command = Console.ReadLine();
 				if (quitCommands.Contains(command)) { break; }
-				try
+
+				Message resp;
+				if (client.SendCommand(command, out resp))
 				{
-					Message resp = client.SendCommand(command);
 					Console.WriteLine(resp.Body);
 				}
-				catch (Exception e)
+				else
 				{
-					Console.WriteLine($"Error sending command: {e.ToString()}");
+					Console.WriteLine("Error sending command.");
 					break;
 				}
 			}

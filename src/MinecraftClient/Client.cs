@@ -4,8 +4,6 @@ using System.Threading;
 
 namespace MinecraftClient
 {
-	class RequestIDMismatchException : Exception { public RequestIDMismatchException() { } }
-
 	class MinecraftClient
 	{
 		private const int MaxMessageSize = 4110; // 4096 + 14 bytes of header data.
@@ -26,27 +24,28 @@ namespace MinecraftClient
 			client.Close();
 		}
 
-		public Message Authenticate(string password)
+		public bool Authenticate(string password)
 		{
+			Message resp;
 			return sendMessage(new Message(
 				password.Length + Encoder.HeaderLength,
 				Interlocked.Increment(ref lastID),
 				MessageType.Authenticate,
 				password
-			));
+			), out resp);
 		}
 
-		public Message SendCommand(string command)
+		public bool SendCommand(string command, out Message resp)
 		{
 			return sendMessage(new Message(
 				command.Length + Encoder.HeaderLength,
 				Interlocked.Increment(ref lastID),
 				MessageType.Command,
 				command
-			));
+			), out resp);
 		}
 
-		private Message sendMessage(Message req)
+		private bool sendMessage(Message req, out Message resp)
 		{
 			// Send the message.
 			byte[] encoded = Encoder.EncodeMessage(req);
@@ -58,12 +57,9 @@ namespace MinecraftClient
 			Array.Resize(ref respBytes, bytesRead);
 
 			// Decode the response and check for errors before returning.
-			Message resp = Encoder.DecodeMessage(respBytes);
-			if (req.ID != resp.ID)
-			{
-				throw new RequestIDMismatchException();
-			}
-			return resp;
+			resp = Encoder.DecodeMessage(respBytes);
+			if (req.ID != resp.ID) { return false; };
+			return true;
 		}
 	}
 }
