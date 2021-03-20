@@ -1,7 +1,7 @@
 language: csharp
 
 mono: none
-dotnet: 5.0.201 # also try 5.0.4
+dotnet: 5.0.201
 
 script:
 - dotnet test
