@@ -35,35 +35,35 @@ namespace MinecraftClient
 			}
 
 			// Connect and authenticate.
-			MinecraftClient client = new MinecraftClient(host, port);
-			if (!client.Authenticate(password))
+			using (MinecraftClient client = new MinecraftClient(host, port))
 			{
-				Console.WriteLine("authentication failure");
-				client.Close();
-				return;
-			}
-
-			// Start RCON shell.
-			List<String> quitCommands = new List<String> { "exit", "quit" };
-			Console.WriteLine("Starting RCON shell. Use 'exit', 'quit', or Ctrl-C to exit.");
-			while (true)
-			{
-				Console.Write("> ");
-				String command = Console.ReadLine();
-				if (quitCommands.Contains(command)) { break; }
-
-				Message resp;
-				if (client.SendCommand(command, out resp))
+				if (!client.Authenticate(password))
 				{
-					Console.WriteLine(resp.Body);
+					Console.WriteLine("authentication failure");
+					return;
 				}
-				else
+
+				// Start RCON shell.
+				List<String> quitCommands = new List<String> { "exit", "quit" };
+				Console.WriteLine("Starting RCON shell. Use 'exit', 'quit', or Ctrl-C to exit.");
+				while (true)
 				{
-					Console.WriteLine("Error sending command.");
-					break;
+					Console.Write("> ");
+					String command = Console.ReadLine();
+					if (quitCommands.Contains(command)) { break; }
+
+					Message resp;
+					if (client.SendCommand(command, out resp))
+					{
+						Console.WriteLine(resp.Body);
+					}
+					else
+					{
+						Console.WriteLine("Error sending command.");
+						break;
+					}
 				}
 			}
-			client.Close();
 		}
 	}
 }
