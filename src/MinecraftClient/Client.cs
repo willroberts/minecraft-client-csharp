@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Net.Sockets;
 using System.Threading;
 
 namespace MinecraftClient
 {
-	class MinecraftClient
+	class MinecraftClient : IDisposable
 	{
 		private const int MaxMessageSize = 4110; // 4096 + 14 bytes of header data.
 
@@ -16,6 +16,11 @@ namespace MinecraftClient
 		{
 			client = new TcpClient(host, port);
 			conn = client.GetStream();
+		}
+		
+		public void Dispose()
+		{
+		    this.Close();
 		}
 
 		public void Close()
