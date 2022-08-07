@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: install dotnet
-      uses: actions/setup-dotnet@v3
+      uses: actions/setup-dotnet@v2
       with:
         dotnet-version: '5.0.x'
     - name: check out code
@@ -20,5 +20,3 @@ jobs:
       run: dotnet build
     - name: test code
       run: dotnet test
-    - name: print job status
-      run: echo "Job status was ${{ job.status }}."
