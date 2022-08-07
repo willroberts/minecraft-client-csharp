@@ -31,7 +31,7 @@ namespace MinecraftClient.Tests.Encoder
 		public void DecodeMessageTest()
 		{
 			byte[] bytes = new byte[] {
-				1, 0, 0, 0, //  Message length.
+				38, 0, 0, 0, //  Message length.
 				2, 0, 0, 0, // Message ID.
 				0, 0, 0, 0, // Message type.
 				83, 101, 101, 100, 58, 32, 91, 45, 50, 52, 55, 52, 49, 50, 53, 53, 55, 52, 56, 57, 48, 54, 57, 50, 51, 48, 56, 93, // Message body.

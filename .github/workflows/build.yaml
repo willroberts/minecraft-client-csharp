@@ -20,5 +20,3 @@ jobs:
       run: dotnet build
     - name: test code
       run: dotnet test
-    - name: print job status
-      run: echo "Job status was ${{ job.status }}."
