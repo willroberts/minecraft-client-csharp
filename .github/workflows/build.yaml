@@ -1,0 +1,24 @@
+name: build
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: install dotnet
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '5.0.x'
+    - name: check out code
+      uses: actions/checkout@v3
+    - name: build code
+      run: dotnet build
+    - name: test code
+      run: dotnet test
+    - name: print job status
+      run: echo "Job status was ${{ job.status }}."
